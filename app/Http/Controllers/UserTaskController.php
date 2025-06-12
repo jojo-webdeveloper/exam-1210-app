@@ -27,19 +27,38 @@ class UserTaskController
         $sortField = in_array($request->get('sort_field'), $allowedSortableFields) ? $request->get('sort_field') : 'date_created';
         $direction = $request->get('direction', 'desc') === 'asc' ? 'asc' : 'desc';
 
-        $tasks = UserTask::with('subTasks')
-            ->where('created_by', auth()->id())
+        $userId = auth()->id();
+
+        $query = UserTask::with('subTasks')
+            ->where('created_by', $userId)
             ->where('publish_status', '<>', 'trashed')
-            ->where('parent_id')
-            ->when($search, fn($q) => $q->where('title', 'like', "%{$search}%"))
-            ->when($status, fn($q) => $q->where('task_status', $status))
-            ->orderBy($sortField, $direction)
+            ->whereNull('parent_id');
+            
+        // If there's a search, adjust the logic to include subtasks
+        if ($search) {
+            // Get parent tasks that match OR parents of matching subtasks
+            $query->where(function ($q) use ($search, $userId) {
+                $q->where('title', 'like', "%{$search}%")
+                ->orWhereIn('id', function ($sub) use ($search, $userId) {
+                    $sub->select('parent_id')
+                        ->from('user_task')
+                        ->where('created_by', $userId)
+                        ->where('title', 'like', "%{$search}%")
+                        ->whereNotNull('parent_id');
+                });
+            });
+        }
+
+        if ($status) {
+            $query->where('task_status', $status);
+        }
+
+        $tasks = $query->orderBy($sortField, $direction)
             ->paginate($perPage)
             ->appends($request->except('page'));
       
         return view('user_tasks.index', compact('tasks', 'search', 'status'));
     }
-
 
     /**
      * Show the form for creating a new resource.

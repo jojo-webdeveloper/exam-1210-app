@@ -113,11 +113,6 @@
                             </tr>
 
                             @foreach ($task->subTasks as $sub)
-                                <!-- <tr class="subtask-row">
-                                <td>&nbsp;&nbsp;↳ {{ $sub->title }}</td> -->
-                                <!-- sub-task columns -->
-
-
                                 <tr class="subtask-row">
                                     <td class="text-center">{{ $sub->id }}</td>
                                     <td>&nbsp;&nbsp;↳ {{ $sub->title }}</td>
@@ -149,11 +144,8 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center py-3">
-                <!-- <div>{{ $tasks->links() }} </div> -->
                 <div class="pagination-modern">
-                    <a href="{{ $tasks->previousPageUrl() ?: '#' }}"
-                        class="arrow {{ $tasks->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
-
+                    <a href="{{ $tasks->previousPageUrl() ?: '#' }}" class="arrow {{ $tasks->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
                     @foreach ($tasks->linkCollection() as $link)
                         @if ($link['url'])
                             <a href="{{ $link['url'] }}" class="{{ $link['active'] ? 'active' : '' }}">{{ $link['label'] }}</a>
@@ -161,9 +153,7 @@
                             <span class="disabled">{{ $link['label'] }}</span>
                         @endif
                     @endforeach
-
-                    <a href="{{ $tasks->nextPageUrl() ?: '#' }}"
-                        class="arrow {{ $tasks->hasMorePages() ? '' : 'disabled' }}">&raquo;</a>
+                    <a href="{{ $tasks->nextPageUrl() ?: '#' }}" class="arrow {{ $tasks->hasMorePages() ? '' : 'disabled' }}">&raquo;</a>
                 </div>
             </div>
         @else

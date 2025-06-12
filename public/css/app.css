@@ -363,45 +363,7 @@ body {
 
 
 /* Modern alternative pagination style (optional) */
-.pagination-modern {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    margin: 25px 0;
-}
 
-.pagination-modern a,
-.pagination-modern span {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #dee2e6;
-    background-color: #fff;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-    min-width: 40px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.pagination-modern a:hover {
-    background-color: #007bff;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.pagination-modern .active span {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
-
-.pagination-modern .disabled span {
-    background-color: #f8f9fa;
-    color: #6c757d;
-    cursor: not-allowed;
-}
 
  .text-center {
     text-align: center;
@@ -555,4 +517,99 @@ button.btn {
 
 .helper a:hover {
   text-decoration: underline;
+}
+
+
+
+
+
+
+
+.pagination-modern {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.pagination-modern a,
+.pagination-modern span {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    min-width: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.pagination-modern a:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.pagination-modern .active span {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination-modern .disabled span {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+
+
+
+
+.pagination-modern {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+}
+
+.pagination-modern a,
+.pagination-modern span {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.pagination-modern a:hover {
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.pagination-modern a.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-modern .disabled {
+    pointer-events: none;
+    color: #999;
+    background-color: #f9f9f9;
+    border-color: #eee;
+}
+
+.pagination-modern .arrow {
+    font-weight: bold;
+    font-size: 16px;
+    
 }
