@@ -146,13 +146,6 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
 
 ---
 
-**For Docker/Sail environment:**
-```bash
-./vendor/bin/sail artisan schedule:work
-```
-
----
-
 ## Task Scheduler Setup
 
 To enable automatic cleanup of trashed tasks, add this to your cron table:
@@ -163,11 +156,6 @@ crontab -e
 
 # Add this line
 * * * * * cd /path/to/your/app && ./vendor/bin/php artisan schedule:run >> /dev/null 2>&1
-```
-
-**For Docker/Sail environment:**
-```bash
-./vendor/bin/sail artisan schedule:work
 ```
 
 ---
