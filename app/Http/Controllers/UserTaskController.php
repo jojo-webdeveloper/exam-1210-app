@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserTask;
+use Hamcrest\Core\IsNull;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Contracts\View\View;
@@ -26,14 +27,17 @@ class UserTaskController
         $sortField = in_array($request->get('sort_field'), $allowedSortableFields) ? $request->get('sort_field') : 'date_created';
         $direction = $request->get('direction', 'desc') === 'asc' ? 'asc' : 'desc';
 
-        $tasks = UserTask::where('created_by', auth()->id())
+        $tasks = UserTask::with('subTasks')
+            ->where('created_by', auth()->id())
             ->where('publish_status', '<>', 'trashed')
+            ->where('parent_id')
             ->when($search, fn($q) => $q->where('title', 'like', "%{$search}%"))
             ->when($status, fn($q) => $q->where('task_status', $status))
             ->orderBy($sortField, $direction)
             ->paginate($perPage)
             ->appends($request->except('page'));
 
+      
         return view('user_tasks.index', compact('tasks', 'search', 'status'));
     }
 
@@ -45,7 +49,13 @@ class UserTaskController
      */
     public function create()
     {
-        return view('user_tasks.create');
+
+        $parentOptions = UserTask::where('created_by', auth()->id())
+        ->orderBy('title')
+        ->pluck('title', 'id');
+
+        //return view('user_tasks.create');
+        return view('user_tasks.create', compact('parentOptions'));
     }
 
 
@@ -64,7 +74,7 @@ class UserTaskController
             'task_status' => 'required|in:done,inprogress,todo',
             'publish_status' => 'required|in:draft,published',
             'parent_id' => 'nullable|exists:user_task,id',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:4096',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png|max:4096',
         ]);
 
         $data['created_by'] = auth()->id();
@@ -104,7 +114,13 @@ class UserTaskController
      */
     public function edit(UserTask $userTask)
     {
-        return view('user_tasks.edit', compact('userTask'));
+
+    $parentOptions = UserTask::where('created_by', auth()->id())
+        ->where('id', '<>', $userTask->id)
+        ->orderBy('title')
+        ->pluck('title','id');
+
+        return view('user_tasks.edit', compact('userTask', 'parentOptions'));
     }
 
 
@@ -128,7 +144,6 @@ class UserTaskController
             'content' => 'required',
             'task_status' => 'nullable|in:done,inprogress,todo',
             'publish_status' => 'required|in:draft,published',
-            'created_by' => 'required|integer',
             'parent_id' => 'nullable|exists:user_task,id',
         ]);
 
