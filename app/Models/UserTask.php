@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Prunable;
 
-
 /**
  * @property int $id
  * @property string $title
@@ -42,6 +41,7 @@ class UserTask extends Model
     ];
     public $timestamps = false;
 
+
     /**
      * Get the user that created the task.
      *
@@ -54,11 +54,13 @@ class UserTask extends Model
             ->orderBy('date_created', 'desc');
     }
 
+
     public function parent()
     {
         return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
+    
     /**
      * Determine which records should be pruned.
      *

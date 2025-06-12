@@ -33,20 +33,4 @@ class UserTaskObserver
         }
     }
 
-    /**
-     * Handle the UserTask "deleted" event.
-     */
-    public function deleted(UserTask $task): void
-    {
-        //
-    }
-
-
-    /**
-     * Handle the UserTask "force deleted" event.
-     */
-    public function forceDeleted(UserTask $task): void
-    {
-        //
-    }
 }
