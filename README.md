@@ -49,7 +49,7 @@ Built for evaluation as part of a Senior PHP Developer assessment.
 
 ### Data Management
 - Soft delete functionality, by putting the task to trash.
-- Automatic cleanup of trashed tasks after 30 days (need to include the cronjob below for this functionality, see the "Task Scheduler Setup" section below)
+- Automatic cleanup of trashed tasks after 30 days. (To enable this functionality, make sure to include the cron job described in the 'Task Scheduler Setup' section below.)
 - Task scheduling with Laravel Cron
 
 ---
