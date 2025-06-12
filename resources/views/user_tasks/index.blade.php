@@ -6,7 +6,7 @@
             <h1>User Tasks</h1>
             <div class="button-group">
             <a href="{{ route('user_tasks.create') }}" class="btn btn-primary">+ New Task</a>
-            <a href="/logout" class="btn btn-warning">Logout</a>
+            <a href="{{ url('logout') }}" class="btn btn-warning">Logout</a>
             </div>
         </div>
 
