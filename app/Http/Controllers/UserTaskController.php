@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserTask;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Contracts\View\View;
 
 class UserTaskController
 {
@@ -13,7 +14,7 @@ class UserTaskController
      * Display a listing of the resource.
      * 
      * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -40,7 +41,7 @@ class UserTaskController
     /**
      * Show the form for creating a new resource.
      * 
-     * @return \Illuminate\View\View      
+     * @return View      
      */
     public function create()
     {
@@ -87,7 +88,7 @@ class UserTaskController
      * Display the specified resource.
      * 
      * @param \App\Models\UserTask  $userTask
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function show(UserTask $userTask)
     {
@@ -99,7 +100,7 @@ class UserTaskController
      * Show the form for editing the specified resource.
      * 
      * @param \App\Models\UserTask  $userTask
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function edit(UserTask $userTask)
     {
