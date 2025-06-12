@@ -1,38 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Registration</title>
-</head>
-<body>
-    <h2>User Registration</h2>
+@extends('layouts.app')
 
-    @if(session('error'))
-        <p style="color: red;">{{ session('error') }}</p>
-    @endif
+@section('content')
+    <div class="login-container">
+        <form method="POST" action="/register" class="login-form">
+            @csrf
+            <h2>Task Management Registration</h2>
 
-    @if ($errors->any())
-        <ul style="color: red;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+            @if(session('error'))
+                <div class="alert">{{ session('error') }}</div>
+            @endif
 
-    <form action="/register" method="POST">
-        @csrf
-        <label>Name:</label><br>
-        <input type="text" name="name" value="{{ old('name') }}"><br><br>
-        
-        <label>Email:</label><br>
-        <input type="email" name="email" value="{{ old('email') }}"><br><br>
-        
-        <label>Password:</label><br>
-        <input type="password" name="password"><br><br>
-        
-        <label>Confirm Password:</label><br>
-        <input type="password" name="password_confirmation"><br><br>
-        
-        <button type="submit">Registration</button>        
-    </form>
-</body>
-</html>
+            @if($errors->any())
+                <ul class="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" value="{{ old('name') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="{{ old('email') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="password_confirmation" required>
+            </div>
+
+            <button type="submit" class="btn-login-register">Register</button>
+
+            <p class="helper">
+                Already have an account?
+                <a href="/login">Login here!</a>
+            </p>
+        </form>
+    </div>
+@endsection

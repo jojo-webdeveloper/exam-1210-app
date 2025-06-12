@@ -5,13 +5,26 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends Controller
+class RegisterController
 {
+
+    /**
+     * Show the registration form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function show()
     {
         return view('register');
     }
 
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function register(Request $request)
     {
         $request->validate([
