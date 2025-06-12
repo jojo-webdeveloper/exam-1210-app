@@ -13,6 +13,6 @@ Artisan::command('inspire', function () {
 // Schedule a command to prune trashed UserTasks older than 30 days, every day at midnight
 Schedule::call(function () {
     UserTask::where('publish_status', 'trashed')
-        ->where('date_updated', '<=', now()->subDays(30))
+        ->where('date_created', '<=', now()->subDays(30))
         ->delete();
 })->daily();
