@@ -1,6 +1,6 @@
 # exam-1210-app
 
-**Title of Exam:** Simple Task Management  
+**Title of Exam:** PHP Developer Post tech. assessment(v2.0) - Simple Task Management  
 **Author:** Jaihgi (Jojo) De Jesus  
 **Role:** Senior PHP Developer  
 **Live URL:** https://jdjportfolio.com/exam-1210-app  
