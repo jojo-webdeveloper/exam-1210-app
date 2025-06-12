@@ -36,7 +36,6 @@ class UserTaskController
             ->orderBy($sortField, $direction)
             ->paginate($perPage)
             ->appends($request->except('page'));
-
       
         return view('user_tasks.index', compact('tasks', 'search', 'status'));
     }
@@ -54,7 +53,6 @@ class UserTaskController
         ->orderBy('title')
         ->pluck('title', 'id');
 
-        //return view('user_tasks.create');
         return view('user_tasks.create', compact('parentOptions'));
     }
 
@@ -115,10 +113,10 @@ class UserTaskController
     public function edit(UserTask $userTask)
     {
 
-    $parentOptions = UserTask::where('created_by', auth()->id())
-        ->where('id', '<>', $userTask->id)
-        ->orderBy('title')
-        ->pluck('title','id');
+        $parentOptions = UserTask::where('created_by', auth()->id())
+            ->where('id', '<>', $userTask->id)
+            ->orderBy('title')
+            ->pluck('title','id');
 
         return view('user_tasks.edit', compact('userTask', 'parentOptions'));
     }
