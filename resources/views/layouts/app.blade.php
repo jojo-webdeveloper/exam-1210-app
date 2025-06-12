@@ -9,11 +9,9 @@
 </head>
 
 <body>
-    <!-- @include('layouts.partials.header') -->
     <main class="container">
         @yield('content')
     </main>
-    <!-- @include('layouts.partials.footer') -->
 </body>
 
 </html>

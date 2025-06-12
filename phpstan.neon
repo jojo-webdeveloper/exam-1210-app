@@ -1,0 +1,8 @@
+parameters:
+  level: 5                     # Analysis strictness (0–9)
+  paths:
+    - app
+    - resources
+
+  ignoreErrors:
+    - '#Call to an undefined method .*#'  # Example: suppress certain errors

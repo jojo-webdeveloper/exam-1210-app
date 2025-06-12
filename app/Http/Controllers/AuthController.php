@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
 
 /**
  * AuthController handles user authentication.
@@ -13,7 +14,7 @@ class AuthController
     /**
      * Show the login form.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function showLoginForm()
     {
@@ -44,7 +45,7 @@ class AuthController
         ])->onlyInput('email');
     }
 
-    
+
     /**
      * Handle a logout request to the application.
      *

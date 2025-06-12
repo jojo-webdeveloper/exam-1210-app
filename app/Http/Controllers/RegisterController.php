@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\View\View;
 
 class RegisterController
 {
@@ -11,7 +12,7 @@ class RegisterController
     /**
      * Show the registration form.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function show()
     {
