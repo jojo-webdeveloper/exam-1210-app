@@ -210,8 +210,6 @@ exam-1210-app/
 │   │   ├── 0001_01_01_000001_create_cache_table.php
 │   │   ├── 0001_01_01_000002_create_jobs_table.php
 │   │   └── 2025_06_11_184538_create_user_task_table.php
-│   └── seeders
-│       └── DatabaseSeeder.php
 ├── docker-compose.yml
 ├── phpstan.neon
 ├── public
