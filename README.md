@@ -1,7 +1,7 @@
 # exam-1210-app
 
 **Title of Exam:** Simple Task Management  
-**Author:** Jaihgi De Jesus  
+**Author:** Jaihgi (Jojo) De Jesus  
 **Role:** Senior PHP Developer
 
 ---

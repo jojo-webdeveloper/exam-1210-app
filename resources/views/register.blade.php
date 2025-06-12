@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login-container">
-        <form method="POST" action="/register" class="login-form">
+        <form method="POST" action="{{ url('register') }}" class="login-form">
             @csrf
             <h2>Task Management Registration</h2>
 
@@ -42,7 +42,7 @@
 
             <p class="helper">
                 Already have an account?
-                <a href="/login">Login here!</a>
+                <a href="{{ url('login') }}">Login here!</a>
             </p>
         </form>
     </div>
