@@ -54,12 +54,23 @@
                 </select>
             </div>
 
+            <!-- <div class="mb-3">
+                    <label for="parent_id" class="form-label">Parent Task (optional)</label>
+                    <input type="number" name="parent_id" id="parent_id" class="form-control" value="{{ old('parent_id') }}">
+
+                    <input type="hidden" name="created_by" id="created_by" class="form-control"
+                        value="{{ old('created_by', auth()->id()) }}" required>
+                </div> -->
             <div class="mb-3">
                 <label for="parent_id" class="form-label">Parent Task (optional)</label>
-                <input type="number" name="parent_id" id="parent_id" class="form-control" value="{{ old('parent_id') }}">
-
-                <input type="hidden" name="created_by" id="created_by" class="form-control"
-                    value="{{ old('created_by', auth()->id()) }}" required>
+                <select name="parent_id" id="parent_id" class="form-control">
+                    <option value="">— None —</option>
+                    @foreach($parentOptions as $id => $title)
+                        <option value="{{ $id }}" {{ old('parent_id') == $id ? ' selected' : '' }}>
+                            {{ $title }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mb-3">

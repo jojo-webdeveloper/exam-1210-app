@@ -111,6 +111,38 @@
                                     </form>
                                 </td>
                             </tr>
+
+                            @foreach ($task->subTasks as $sub)
+                                <!-- <tr class="subtask-row">
+                                <td>&nbsp;&nbsp;↳ {{ $sub->title }}</td> -->
+                                <!-- sub-task columns -->
+
+
+                                <tr class="subtask-row">
+                                    <td class="text-center">{{ $sub->id }}</td>
+                                    <td>&nbsp;&nbsp;↳ {{ $sub->title }}</td>
+                                    <td class="text-center">
+                                        <span class="status-badge status-{{ $sub->task_status ?? 'unknown' }}">
+                                            {{ $sub->task_status ?? '—' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="publish-status">{{ $sub->publish_status }}</span>
+                                    </td>
+                                    <td class="text-center">{{ $sub->date_created }}</td>
+                                    <td class="text-center actions">
+                                        <a href="{{ route('user_tasks.show', $sub) }}" class="btn btn-info">View</a>
+                                        <a href="{{ route('user_tasks.edit', $sub) }}" class="btn btn-warning">Edit</a>
+                                        <form action="{{ route('user_tasks.trash', $sub) }}" method="POST" class="inline-form">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Move this task to Trash?')">Trash</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         @endforeach
                     </tbody>
                 </table>

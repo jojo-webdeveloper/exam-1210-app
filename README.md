@@ -67,7 +67,7 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/jojo-webdeveloper/exam-1210-app.git
    cd exam-1210-app
    ```
 
@@ -98,8 +98,8 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
    *This will set up the two main tables: `users` and `user_tasks`*
 
 7. **Access the application**
-   - Open your browser and navigate to: `http://localhost`
-   - Register a new account or login to start managing tasks
+   - Open your browser and navigate to: `http://localhost:9001`
+   - Register a new account and login to start managing tasks
 
 ### Development Commands
 
@@ -145,14 +145,16 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
 ### User Tasks Table
 ```sql
 - id (Primary Key)
-- user_id (Foreign Key → users.id)
+- parent_id (Foreign Key → id)
 - title (String)
-- description (Text, Nullable)
+- content (Text, Nullable)
 - task_status (Enum: todo, inprogress, done)
-- publish_status (Boolean/String)
+- publish_status (Enum: draft, published, trashed)
+- created_by (Foreign Key → users.id)
 - date_created (Timestamp)
-- deleted_at (Timestamp, Nullable - for soft deletes)
-- created_at, updated_at (Timestamps)
+- date_updated (Timestamp)
+- date_published(Timestamp, Nullable - for publish_status as draft)
+- attachment (String, Nullable)
 ```
 
 ---
@@ -204,6 +206,8 @@ crontab -e
 exam-1210-app/
 ├── app/
 │   ├── Http/Controllers/
+│   │   |── AuthController.php
+│   │   |── RegisterController.php
 │   │   └── UserTaskController.php
 │   ├── Models/
 │   │   ├── User.php
