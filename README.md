@@ -101,7 +101,7 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
    - Open your browser and navigate to: `http://localhost:9001`
    - Register a new account and login to start managing tasks
 
-### Development Commands
+### Setup up command Commands
 
 ```bash
 # Start the application
@@ -110,22 +110,9 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
 # Stop the application  
 ./vendor/bin/sail down
 
-# Run migrations
+# Run migrations to setup the database as well the two tables `users` and `user_tasks`
 ./vendor/bin/sail artisan migrate
 
-# Seed database (if seeders are available)
-./vendor/bin/sail artisan db:seed
-
-# Run tests
-./vendor/bin/sail test
-
-# Clear cache
-./vendor/bin/sail artisan cache:clear
-./vendor/bin/sail artisan config:clear
-./vendor/bin/sail artisan route:clear
-
-# View logs
-./vendor/bin/sail logs
 ```
 
 ---
@@ -159,6 +146,13 @@ This project uses **Laravel Sail** (Docker-based) to simplify local development.
 
 ---
 
+**For Docker/Sail environment:**
+```bash
+./vendor/bin/sail artisan schedule:work
+```
+
+---
+
 ## Task Scheduler Setup
 
 To enable automatic cleanup of trashed tasks, add this to your cron table:
@@ -168,7 +162,7 @@ To enable automatic cleanup of trashed tasks, add this to your cron table:
 crontab -e
 
 # Add this line
-* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /path/to/your/app && ./vendor/bin/php artisan schedule:run >> /dev/null 2>&1
 ```
 
 **For Docker/Sail environment:**
@@ -204,27 +198,56 @@ crontab -e
 
 ```
 exam-1210-app/
-├── app/
-│   ├── Http/Controllers/
-│   │   |── AuthController.php
-│   │   |── RegisterController.php
-│   │   └── UserTaskController.php
-│   ├── Models/
-│   │   ├── User.php
-│   │   └── UserTask.php
-│   └── Console/Commands/
-├── database/
-│   ├── migrations/
-│   └── seeders/
-├── resources/
-│   ├── views/
-│   │   ├── layouts/
-│   │   └── user_tasks/
-│   └── css/
-├── public/
-│   └── css/
-│       └── app.css
-├── routes/
-│   └── web.php
-└── tests/
+├── app
+│   ├── Http
+│   │   └── Controllers
+│   │       ├── AuthController.php
+│   │       ├── RegisterController.php
+│   │       └── UserTaskController.php
+│   ├── Models
+│   │   ├── User.php
+│   │   └── UserTask.php
+│   ├── Observers
+│   │   └── UserTaskObserver.php
+│   └── Providers
+│       └── AppServiceProvider.php
+├── config
+├── database
+│   ├── database.sqlite
+│   ├── factories
+│   │   └── UserFactory.php
+│   ├── migrations
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   └── 2025_06_11_184538_create_user_task_table.php
+│   └── seeders
+│       └── DatabaseSeeder.php
+├── docker-compose.yml
+├── phpstan.neon
+├── public
+│   ├── css
+│   ├── images
+│   ├── index.php
+├── README.md
+├── resources
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views
+│       ├── layouts
+│       │   └── app.blade.php
+│       ├── login.blade.php
+│       ├── register.blade.php
+│       └── user_tasks
+│           ├── create.blade.php
+│           ├── edit.blade.php
+│           ├── index.blade.php
+│           └── show.blade.php
+├── routes
+│   ├── console.php
+│   └── web.php
+├── storage
+└── vite.config.js
+
 ```
