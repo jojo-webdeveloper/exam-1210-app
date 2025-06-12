@@ -3,8 +3,11 @@ parameters:
   paths:
     - app
     - resources
+    - routes
 
   ignoreErrors:
     - '#Call to an undefined method .*#'  # Example: suppress certain errors
     - '#Call to an undefined static method App\\Models\\User::create\(\)#'
     - '#Call to an undefined static method App\\Models\\UserTask::create\(\)#'
+    - identifier: variable.undefined
+      path: routes/console.php
